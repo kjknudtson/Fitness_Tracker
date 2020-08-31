@@ -1,7 +1,9 @@
 const express = require("express");
 const mongojs = require("mongojs");
+const mongoose = require("mongoose");
 const logger = require("morgan");
-const path = require("path");
+
+const PORT = process.env.PORT || 8080;
 
 const app = express();
 
@@ -14,14 +16,15 @@ app.use(express.static("public"));
 
 
 
-// const db = mongojs(databaseUrl, collections);
+// const db = require("./models");
 
 // db.on("error", error => {
 //   console.log("Database Error:", error);
 // });
 
+require("./routes/api-routes");
+require("./routes/html-routes");
 
-
-app.listen(8080, () => {
-  console.log("App running on port 8080!");
-});
+app.listen(PORT, () => {
+    console.log(`App running on port ${PORT}!`);
+  });

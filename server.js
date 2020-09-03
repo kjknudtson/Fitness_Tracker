@@ -16,14 +16,12 @@ app.use(express.static("public"));
 
 
 
-// const db = require("./models");
+const db = require("./models");
 
-// db.on("error", error => {
-//   console.log("Database Error:", error);
-// });
 
-require("./routes/api-routes");
-require("./routes/html-routes");
+
+//require("./routes/api-routes.js")(app)
+require("./routes/html-routes.js")(app);
 
 app.listen(PORT, () => {
     console.log(`App running on port ${PORT}!`);

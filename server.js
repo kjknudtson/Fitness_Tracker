@@ -18,9 +18,9 @@ app.use(express.static("public"));
 
 const db = require("./models");
 
+mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/fitnesstracker", { useNewUrlParser: true, useFindAndModify: false, useUnifiedTopology: true});
 
-
-//require("./routes/api-routes.js")(app)
+require("./routes/api-routes.js")(app)
 require("./routes/html-routes.js")(app);
 
 app.listen(PORT, () => {

@@ -12,9 +12,11 @@ module.exports = (app) => {
           })
     });
 
-    app.put("/api/workouts/:id", (req, res) => {
+    app.put("/api/workouts/:id", ( { body, params }, res) => {
         Workout.findByIdAndUpdate(
-            params.id
+            params.id,
+            { $push: {exercises:body} },
+            { new: true }
         )
             .then(dbWorkout => {
                 res.json(dbWorkout);
